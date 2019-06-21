@@ -28,17 +28,14 @@
           </div>
           <div id="navbarMenuHeroB" class="navbar-menu">
             <div class="navbar-end">
-              <a class="navbar-item is-active">
-                Home
-              </a>
+              <%= link_to 'Home', root_path, class: "navbar-item"%>
               <% if signed_in? %>
-                  <%= link_to 'Sign out', sign_out_path, method: :delete, class: "navbar-item" %>
+                <%= link_to 'Create a blog', new_post_url, class: "navbar-item"%>
+                <%= link_to 'Sign out', sign_out_path, method: :delete, class: "navbar-item" %>
               <%else%>
                   <%= link_to 'Sign in', sign_in_path, class: "navbar-item" %>
               <%end%>
-              <a class="navbar-item">
-                Documentation
-              </a>
+
               </span>
             </div>
           </div>

@@ -15,7 +15,11 @@
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
+            <% if signed_in? %>
+              <%=  link_to current_user.email, root_path, class: "navbar-item"  %>
+            <%else%>
               <%= link_to 'BlogCina', root_path, class: "navbar-item"%>
+            <%end%>
             <span class="navbar-burger burger" data-target="navbarMenuHeroB">
               <span></span>
               <span></span>
@@ -27,9 +31,11 @@
               <a class="navbar-item is-active">
                 Home
               </a>
-              <a class="navbar-item">
-                Examples
-              </a>
+              <% if signed_in? %>
+                  <%= link_to 'Sign out', sign_out_path, method: :delete, class: "navbar-item" %>
+              <%else%>
+                  <%= link_to 'Sign in', sign_in_path, class: "navbar-item" %>
+              <%end%>
               <a class="navbar-item">
                 Documentation
               </a>
@@ -52,4 +58,3 @@
     <%= yield %>
   </body>
 </html>
-

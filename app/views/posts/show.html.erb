@@ -3,7 +3,8 @@
     <div class="container">
         <nav class="level">
             <!-- Left side -->
-            <% if signed_in? %>
+            <% if signed_in?  %>
+            <% if @post.user_id == current_user.id  %>
             <div class="level-left">
                 <p class="level-item">
                     <Strong>Actions: </Strong>
@@ -17,6 +18,7 @@
                 </p>
             </div>
                
+            <% end %>
             <% end %>
 
         </nav>

@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
-    def index 
-        @posts = Post.all.order("created_at DESC")
+    def index
+        if params[:user_posts] == "true"
+            @posts = Post.where(user_id: current_user.id).order("created_at DESC")
+          else
+            @posts = Post.all.order("created_at DESC")
+          end
     end
 
     def new
@@ -9,7 +13,8 @@ class PostsController < ApplicationController
     end
 
     def create
-		@post = Post.new(post_params)
+        @post = Post.new(post_params)
+        @post.user_id = current_user.id if current_user
 		if @post.save
 			redirect_to @post
 		else
@@ -47,7 +52,7 @@ class PostsController < ApplicationController
 
     private 
     def post_params
-        params.require(:post).permit(:title, :content)
+        params.require(:post).permit(:title, :content, :user_id)
     end
 
 end

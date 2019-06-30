@@ -1,4 +1,4 @@
-<% content_for :page_title, "Index" %>
+<% content_for :page_title, "Blogs" %>
 
 <section class = "section">
     <div class:"container">
@@ -7,19 +7,19 @@
                 <div class="card-content">
                     <div class="media">
                         <div class = "media-content">
-                            <p class="title is-4" >
+                            <p class="tile is-medium">
                                 <%= link_to post.title, post, class: "title"%>
                             </p>
                         </div>
                     </div>
-                    <div class="content">
-                        <%= post.content%>
+                    <br>
+                    <div class="label">
+                    Created by: 
+                        <%=User.find(post.user.id).email %>
                     </div>
-                    <!-- <div class="comment-count">
-                        <span class="tag is rounded">
-                        <%# comment count%>
-                        </span>
-                    </div> -->
+                    <div class="text is-right">
+                     <%= Date.parse(post.created_at.to_s).strftime('%d.%m.%Y') %>
+                    </div>
                 </div>
              </div>
         <%end%>

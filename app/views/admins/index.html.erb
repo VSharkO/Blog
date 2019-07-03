@@ -23,11 +23,12 @@
                     <%else%>
                         <%= link_to 'Remove admin', remove_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-warning"%>
                     <%end%>
-                    
+                    <%if user.is_admin != true%>
                     <%if user.is_blocked != true%>
                         <%= link_to 'Block user', blocked_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-black"%> 
                     <%else%>
                         <%= link_to 'Unblock user', blocked_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-success"%>
+                    <%end%>
                     <%end%>
                 </div>
              </div>

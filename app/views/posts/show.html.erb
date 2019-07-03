@@ -4,7 +4,7 @@
         <nav class="level">
             <!-- Left side -->
             <% if signed_in?  %>
-            <% if @post.user_id == current_user.id  %>
+            <% if @post.user_id == current_user.id || current_user.is_admin == true %>
             <div class="level-left">
                 <p class="level-item">
                     <Strong>Actions: </Strong>

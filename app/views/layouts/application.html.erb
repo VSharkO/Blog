@@ -32,6 +32,9 @@
               <% if signed_in? %>
                 <%= link_to 'Create a blog', new_post_url, class: "navbar-item"%>
                 <%= link_to 'Show my blogs', root_path(:user_posts => "true"), class: "navbar-item"%>
+                <%if current_user.is_admin == true%>
+                <%= link_to 'Admin Settings', admins_path, class: "navbar-item" %>
+                <%end%>
                 <%= link_to 'Sign out', sign_out_path, method: :delete, class: "navbar-item" %>
               <%else%>
                   <%= link_to 'Sign in', sign_in_path, class: "navbar-item" %>

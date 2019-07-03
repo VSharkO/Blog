@@ -1,0 +1,37 @@
+<% content_for :page_title, "Admin Settings" %>
+
+<section class = "section">
+    <div class:"container">
+        <% @users.each do |user| %>
+            <%if user.id != current_user.id%>
+             <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class = "media-content">
+                            <p class="title is-medium">
+                                <%=user.email%>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="label">
+                    Actions:
+                    </div>
+                    <%if user.is_admin != true%>
+                        <%= link_to 'Delete', admin_path(user), method: :delete, data: {confirm: "Are you sure? "}, class: "button is-danger"%> 
+                        <%= link_to 'Set as admin', set_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-success"%>
+                    <%else%>
+                        <%= link_to 'Remove admin', remove_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-warning"%>
+                    <%end%>
+                    
+                    <%if user.is_blocked != true%>
+                        <%= link_to 'Block user', blocked_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-black"%> 
+                    <%else%>
+                        <%= link_to 'Unblock user', blocked_admin_path(user), method: :put, data: {confirm: "Are you sure? "}, class: "button is-success"%>
+                    <%end%>
+                </div>
+             </div>
+            <%end%>
+        <%end%>
+    </div>
+</section> 

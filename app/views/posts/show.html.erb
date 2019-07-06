@@ -4,7 +4,7 @@
         <nav class="level">
             <!-- Left side -->
             <% if signed_in?  %>
-            <% if @post.user_id == current_user.id  %>
+            <% if @post.user_id == current_user.id || current_user.is_admin == true %>
             <div class="level-left">
                 <p class="level-item">
                     <Strong>Actions: </Strong>
@@ -28,6 +28,18 @@
         </div>
     </div>
 </section>
-
-<section class:"comments"></section>
-
+<%if signed_in?%>
+<section class="section comments">
+	<div class="container">
+		<h2 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Comments</h2>
+		<%= render @post.comments %>
+		<div class="comment-form">
+			<hr />
+            <%if !current_user.is_blocked%>
+			<h3 class="subtitle is-3">Leave a reply</h3>
+	 		<%= render 'comments/form' %>
+            <%end%>
+		</div>
+	</div>
+</section> 
+<%end%>

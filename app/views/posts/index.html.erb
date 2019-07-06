@@ -13,6 +13,7 @@
                         </div>
                     </div>
                     <br>
+                    <%if User.exists?(post.user_id)%>
                     <div class="label">
                     Created by: 
                         <%=User.find(post.user.id).email %>
@@ -20,6 +21,7 @@
                     <div class="text is-right">
                      <%= Date.parse(post.created_at.to_s).strftime('%d.%m.%Y') %>
                     </div>
+                    <%end%>
                 </div>
              </div>
         <%end%>

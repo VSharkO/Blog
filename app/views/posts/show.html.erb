@@ -28,15 +28,18 @@
         </div>
     </div>
 </section>
-
+<%if signed_in?%>
 <section class="section comments">
 	<div class="container">
 		<h2 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Comments</h2>
 		<%= render @post.comments %>
 		<div class="comment-form">
 			<hr />
+            <%if !current_user.is_blocked%>
 			<h3 class="subtitle is-3">Leave a reply</h3>
 	 		<%= render 'comments/form' %>
+            <%end%>
 		</div>
 	</div>
 </section> 
+<%end%>
